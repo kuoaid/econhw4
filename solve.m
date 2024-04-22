@@ -1,3 +1,4 @@
+% link to doc: https://docs.google.com/document/d/1rN9ayRwvA2b9SBesn_RGQ3uL4rQ7AsYQT-qCMfhJCuM/edit?usp=sharing
 % Parameters
 T = 40; % Working years
 TR = 20; % Retirement years
@@ -10,6 +11,13 @@ alpha = 0.3; % Capital's production elasticity
 % Call the model equations
 [c, h, k, utility, r, w] = model_equations(A, alpha, T, TR, lambda);
 
+% Calculate wealth inequality: average asset value of top 10% divided by the average asset value of bottom 10%
+sorted_k = sort(k); % Sort the asset values
+num_assets = length(k); % The total number of asset values
+top_10_percent = sorted_k(round(0.9 * num_assets):end); % Top 10% of asset values
+bottom_10_percent = sorted_k(1:round(0.1 * num_assets)); % Bottom 10% of asset values
+wealth_inequality = mean(top_10_percent) / mean(bottom_10_percent); % Wealth inequality measure
+
 % Output results
 fprintf('Rental Rate of Capital: %.4f\n', r);
 fprintf('Wage Rate: %.4f\n', w);
@@ -19,6 +27,7 @@ fprintf('Lifetime Utility: %.2f utils\n', utility);
 fprintf('Length of k: %d\n', length(k));
 fprintf('Range for x-axis: %d to %d, Total points: %d\n', 0, T+TR, length(0:T+TR));
 fprintf('Savings at Retirement: %.2f\n', k(T+1));
+fprintf('Wealth Inequality (Top 10%%/Bottom 10%%): %.2f\n', wealth_inequality);
 
 % Plotting
 figure;
