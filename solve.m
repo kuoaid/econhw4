@@ -9,7 +9,20 @@ A = 1; % Production output multiplier
 alpha = 0.3; % Capital's production elasticity
 
 % Call the model equations
-[c, h, k, utility, r, w] = model_equations(A, alpha, T, TR, lambda);
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% To analyze the case with no social security, change this into 0.%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+withSS = 1;
+
+
+if withSS == 1
+    [c, h, k, utility, r, w] = model_equations(A, alpha, T, TR, lambda);
+else
+    [c, h, k, utility, r, w] = model_equations_no_ss(A, alpha, T, TR, lambda);
+end
 
 % Calculate wealth inequality: average asset value of top 10% divided by the average asset value of bottom 10%
 sorted_k = sort(k); % Sort the asset values
