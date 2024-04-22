@@ -1,8 +1,12 @@
-function [c, h, k, utility, r, w] = model_equations(A, alpha, T, TR, lambda)
+function [c, h, k, utility, r, w] = model_equations(A, alpha, T, TR, lambda, withSS)
     % Parameters
     delta = 0.1; % Assumed depreciation rate for more realistic modeling
     rho = 0.2; % Tax rate
     B = 0.2; % Social security benefit
+
+    if withSS==0
+        B = 0;
+    end
 
     % Solve for equilibrium wage (w) and rental rate of capital (r)
     K = 5; % Total capital in economy, assume initial guess

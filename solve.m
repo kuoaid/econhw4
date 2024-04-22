@@ -16,13 +16,8 @@ alpha = 0.3; % Capital's production elasticity
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 withSS = 1;
+[c, h, k, utility, r, w] = model_equations(A, alpha, T, TR, lambda, withSS);
 
-
-if withSS == 1
-    [c, h, k, utility, r, w] = model_equations(A, alpha, T, TR, lambda);
-else
-    [c, h, k, utility, r, w] = model_equations_no_ss(A, alpha, T, TR, lambda);
-end
 
 % Calculate wealth inequality: average asset value of top 10% divided by the average asset value of bottom 10%
 sorted_k = sort(k); % Sort the asset values
