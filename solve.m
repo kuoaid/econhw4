@@ -8,14 +8,14 @@ lambda = 2; % Utility parameter
 A = 1; % Production output multiplier
 alpha = 0.3; % Capital's production elasticity
 
-% Call the model equations
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % To analyze the case with no social security, change this into 0.%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 withSS = 1;
+
+% Call the model equations
 [c, h, k, utility, r, w] = model_equations(A, alpha, T, TR, lambda, withSS);
 
 
